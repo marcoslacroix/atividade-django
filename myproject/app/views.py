@@ -23,7 +23,7 @@ def do_logout(request):
 
 def do_search_promocao(request):
 
-    promocoes = Promocao.objects.all()
+    promocoes = Promocao.objects.order_by('-destaque')
 
     return render(request, "index.html", {"promocoes": promocoes})
 

@@ -42,9 +42,10 @@ class Promocao(models.Model):
     loja = models.ForeignKey(Loja, on_delete=models.CASCADE)
     preco = models.IntegerField()
     cupom = models.CharField(max_length=100, blank=True)
-    destaque = models.BooleanField()
+    destaque = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = ("Promoção")
         verbose_name_plural = ("Promoções")
+        ordering = ('destaque',)
 

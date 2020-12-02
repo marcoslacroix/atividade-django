@@ -21,7 +21,7 @@
 
                 </div>
                 <div class="inputContainer half last">
-
+                    <input type="text" id="myInput" placeholder="Search for names.." title="Type in a name">
 
 
                 </div>
@@ -40,23 +40,16 @@
 
                     {% for promocao in promocoes %}
                     <li class="taskItem">
-                        {% if promocao.destaque == True %} 
+                        <input class="favorite styled"
+                        type="button"
+                        value="Add to favorites">
+
                             <label for="{{ promocao.produto }}"><span class="complete-">{{ promocao.produto }}</span></label>
                             <label for="{{ promocao.loja }}"><span class="complete-">{{ promocao.loja }}</span></label>
                             <label for="{{ promocao.preco }}"><span class="complete-">{{ promocao.preco }}</span> reais</label>
-                        {% endif%} 
                     </li>
                     {% endfor %}
 
-                    {% for promocao in promocoes %}
-                    <li class="taskItem">
-                        {% if promocao.destaque == False %} 
-                            <label for="{{ promocao.produto }}"><span class="complete-">{{ promocao.produto }}</span></label>
-                            <label for="{{ promocao.loja }}"><span class="complete-">{{ promocao.loja }}</span></label>
-                            <label for="{{ promocao.preco }}"><span class="complete-">{{ promocao.preco }}</span> reais</label>
-                        {% endif%} 
-                    </li>
-                    {% endfor %}
                 </ul><!-- taskList -->
             </form>
         </div><!-- content -->
