@@ -15,12 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import do_login, do_logout, do_search_promocao
+from app.views import do_login, do_logout, do_search_promocao, ProdutoList, LojaList, PromocaoList
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', do_search_promocao),
     path('login/', do_login),
-    path('logout/', do_logout)
+    path('logout/', do_logout),
+    path('produtos/', ProdutoList.as_view()),
+    path('lojas/', LojaList.as_view()),
+    path('promocoes/', PromocaoList.as_view())
+
 
 ]
