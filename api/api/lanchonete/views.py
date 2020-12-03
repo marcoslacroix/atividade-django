@@ -16,9 +16,7 @@ class LojaList(APIView):
 
     def get(self, request, format=None):
         get_data = request.query_params
-        lojas = Loja.objects.all()
-        if 'nome' in get_data:
-            lojas = lojas.filter(nome=get_data.get('nome'))   
+        lojas = Loja.objects.all() 
         serializer = LojaSerializer(lojas, many=True)
         return Response(serializer.data)
 
@@ -73,8 +71,6 @@ class ProdutoList(APIView):
     def get(self, request, format=None):
         get_data = request.query_params
         produtos = Produto.objects.all()
-        if 'categoria' in get_data:
-            produtos = produtos.filter(categoria=get_data.get('categoria'))  
         serializer = ProdutoSerializer(produtos, many=True)
         return Response(serializer.data)
     
@@ -128,8 +124,6 @@ class PromocaoList(APIView):
     def get(self, request, format=None):
         get_data = request.query_params
         promocoes = Promocao.objects.all()
-        if 'preco' in get_data:
-            promocoes = promocoes.filter(preco=get_data.get('preco'))  
         serializer = PromocaoSerializer(promocoes, many=True)
         return Response(serializer.data)
 
