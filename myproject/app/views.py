@@ -33,7 +33,6 @@ def do_search_promocao(request):
 
     return render(request, "index.html", {"promocoes": promocoes})
 
-
 class LojaList(APIView):
 
     authentication_classes = [BasicAuthentication]
@@ -154,7 +153,9 @@ class PromocaoList(APIView):
         get_data = request.query_params
         promocoes = Promocao.objects.all()
         if 'preco' in get_data:
-            promocoes = promocoes.filter(preco=get_data.get('preco'))  
+            promocoes = promocoes.filter(preco=get_data.get('preco'))
+        elif 'favoritar' in get_data:
+            promocoes = promocoes.filter(favoritar=get_data.get('favoritar'))  
         serializer = PromocaoSerializer(promocoes, many=True)
         return Response(serializer.data)
 

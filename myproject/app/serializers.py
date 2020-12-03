@@ -16,4 +16,4 @@ class PromocaoSerializer(serializers.ModelSerializer):
     loja = serializers.SlugRelatedField(many=False, read_only=False, queryset=Loja.objects.all(),slug_field='id') 
     class Meta:
         model = Promocao
-        fields = ['id', 'preco', 'cupom', 'destaque', 'loja', 'produto']
+        fields = ['id', 'preco', 'cupom', 'destaque', 'loja', 'produto', 'favoritar']
