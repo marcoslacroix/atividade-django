@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import do_login, do_logout, do_search_promocao, ProdutoList, LojaList, PromocaoList
+from app.views import do_login, do_logout, do_search_promocao, ProdutoList, LojaList, PromocaoList, LojaDetail, ProdutoDetail, PromocaoDetail
 
 
 urlpatterns = [
@@ -25,7 +25,10 @@ urlpatterns = [
     path('logout/', do_logout),
     path('produtos/', ProdutoList.as_view()),
     path('lojas/', LojaList.as_view()),
-    path('promocoes/', PromocaoList.as_view())
+    path('promocoes/', PromocaoList.as_view()),
+    path('lojas/<int:pk>/', LojaDetail.as_view()),
+    path('produtos/<int:pk>/', ProdutoDetail.as_view()),
+    path('promocoes/<int:pk>/', PromocaoDetail.as_view())
 
 
 ]

@@ -1,0 +1,6 @@
+
+[client]
+database = lanchonetedb
+user = marcos
+password = 930346Aa!
+default-character-set = utf8
