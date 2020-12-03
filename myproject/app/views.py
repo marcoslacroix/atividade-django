@@ -100,7 +100,8 @@ class ProdutoList(APIView):
         if 'categoria' in get_data:
             produtos = produtos.filter(categoria=get_data.get('categoria'))  
         serializer = ProdutoSerializer(produtos, many=True)
-        return Response(serializer.data)
+        return render(request, "filterProduto.html", {"produtos": produtos}) # renderizando na página os todos e categorias
+        
     
     def post(self, request, format=None):
         serializer = ProdutoSerializer(data=request.data)
@@ -120,9 +121,9 @@ class ProdutoDetail(APIView):
             raise Http404
 
     def get(self, request, pk, format=None):
-        produto = self.get_object(pk)
-        serializer = ProdutoSerializer(produto)
-        return Response(serializer.data)
+        
+        produtos = Produto.objects.filter(pk=pk)
+        return render(request, "produtoInfo.html", {"produtos": produtos}) # renderizando na página os todos e categorias
 
     def put(self, request, pk, format=None):
         produto = self.get_object(pk)
@@ -157,7 +158,7 @@ class PromocaoList(APIView):
         elif 'favoritar' in get_data:
             promocoes = promocoes.filter(favoritar=get_data.get('favoritar'))  
         serializer = PromocaoSerializer(promocoes, many=True)
-        return Response(serializer.data)
+        return render(request, "filterPromocao.html", {"promocoes": promocoes}) 
 
     def post(self, request, format=None):
         serializer = PromocaoSerializer(data=request.data)
@@ -165,7 +166,6 @@ class PromocaoList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 class PromocaoDetail(APIView):
     authentication_classes = [BasicAuthentication]
